@@ -8,7 +8,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
-	"./proto"
+	proto "github.com/kaansari/michael-angular-go-grpc-example/server/proto"
 )
 
 type server struct{}
@@ -19,7 +19,7 @@ func (s *server) Plus(ctx context.Context, in *proto.CalcRequest) (*proto.CalcRe
 }
 
 func main() {
-    log.Printf("Start gRPC server")
+	log.Printf("Start gRPC server")
 
 	lis, err := net.Listen("tcp", "0.0.0.0:50051")
 	if err != nil {

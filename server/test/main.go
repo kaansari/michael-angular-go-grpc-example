@@ -1,24 +1,24 @@
 package main
 
- import (
+import (
 	"log"
 
- 	"golang.org/x/net/context"
+	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
- 	"../proto"
+	proto "github.com/kaansari/michael-angular-go-grpc-example/server/proto"
 )
 
- func main() {
+func main() {
 	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Connect failed：%v", err)
 	}
 	defer conn.Close()
 
- 	c := proto.NewCalculatorClient(conn)
+	c := proto.NewCalculatorClient(conn)
 
- 	r, err := c.Plus(context.Background(), &proto.CalcRequest{NumberA: 1, NumberB: 2})
+	r, err := c.Plus(context.Background(), &proto.CalcRequest{NumberA: 1, NumberB: 2})
 	if err != nil {
 		log.Fatalf("Can not execute function：%v", err)
 	}
